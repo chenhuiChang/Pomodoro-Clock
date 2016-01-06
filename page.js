@@ -4,66 +4,66 @@ var tick; // for setInterval
 //setting buttons
 function minus_break() {
     if (timerstate=='break_stop') {
-    	//minus_break
-    	//setting change
-    	var t = get_break()-1;
-    	t = (t==0)?1:t;
-    	set_break(t);
-    	//circle change
-    	update_time(t,0);
+      //minus_break
+      //setting change
+      var t = get_break()-1;
+      t = (t==0)?1:t;
+      set_break(t);
+      //circle change
+      update_time(t,0);
     }
 }
 
 function plus_break() {
-	if (timerstate=='break_stop') {
-		//plus_break
-		//setting change
-		var t = get_break()+1;
-		t = (t==60)?1:t;
-		set_break(t);
-    	//circle change
-    	update_time(t,0);
-	}
+  if (timerstate=='break_stop') {
+    //plus_break
+    //setting change
+    var t = get_break()+1;
+    t = (t==60)?1:t;
+    set_break(t);
+      //circle change
+      update_time(t,0);
+  }
 }   
 
 function minus_session() {
-   	if (timerstate=='session_stop') {
-   		//minus_session
-   		//setting change
-   		var t = get_session()-1;
-   		t = (t==0)?1:t;
-   		set_session(t);
-    	//circle change
-    	update_time(t,0);
-   	}
+    if (timerstate=='session_stop') {
+      //minus_session
+      //setting change
+      var t = get_session()-1;
+      t = (t==0)?1:t;
+      set_session(t);
+      //circle change
+      update_time(t,0);
+    }
 }
 
 function plus_session() {
-	if (timerstate=='session_stop') {
-		//plus_session
-		//setting change
-		var t =get_session()+1;
-		t = (t==60)?1:t;
-		set_session(t);
-    	//circle change
-    	update_time(t,0);
-	}
+  if (timerstate=='session_stop') {
+    //plus_session
+    //setting change
+    var t =get_session()+1;
+    t = (t==60)?1:t;
+    set_session(t);
+      //circle change
+      update_time(t,0);
+  }
 }
 
 //setting information get
 function get_break(){
-	return Math.round(document.getElementById("break-time").innerHTML);
+  return Math.round(document.getElementById("break-time").innerHTML);
 }
 function get_session()
 {
-	return Math.round(document.getElementById("session-time").innerHTML);
+  return Math.round(document.getElementById("session-time").innerHTML);
 }
 //setting information update
 function set_break (num) {
-	$("#break-time").html(String(num));
+  $("#break-time").html(String(num));
 }
 function set_session(num){
-	$("#session-time").html(String(num));
+  $("#session-time").html(String(num));
 }
 
 //timer state control
@@ -74,21 +74,21 @@ function stop_run_change_state() {
     } else if (timerstate == 'session_run'){
         timerstate = 'session_stop';
     } else if (timerstate == 'break_stop') {
-    	timerstate = 'break_run';
+      timerstate = 'break_run';
     } else if (timerstate == 'break_run') {
-    	timerstate = 'break_stop';
+      timerstate = 'break_stop';
     }
     console.log(timerstate);
 }
 
 function is_timer_run(){
-	if (timerstate == 'session_run') return true;
-	else if (timerstate == 'break_run') return true;
-	else return false;
+  if (timerstate == 'session_run') return true;
+  else if (timerstate == 'break_run') return true;
+  else return false;
 }
 
 function stop_timer() {
-	clearInterval(tick);
+  clearInterval(tick);
 }
 
 //timer show
@@ -129,35 +129,43 @@ function get_left() {
 //timer control
 function clock_click(){
   test();
-	if(is_timer_run()){
-		stop_run_change_state();
-		stop_timer();
-	}
-	else{
-		stop_run_change_state();
-		//timer start
-		tick = setInterval(conunt_down, 1000);
-	}
+  if(is_timer_run()){
+    stop_run_change_state();
+    stop_timer();
+  }
+  else{
+    stop_run_change_state();
+    //timer start
+    tick = setInterval(conunt_down, 1000);
+  }
 }
 
 function state_show_update(){
-	if (timerstate=='break_run' || timerstate=='break_stop')
-		$("#state").html('Break');
-	else if(timerstate=='session_run' || timerstate=='session_stop')
-		$("#state").html('Session');
+  if (timerstate=='break_run' || timerstate=='break_stop')
+    {
+      $("#state").html('Break');
+      $(".time-font").css('color','#AAA');
+    }
+  else if(timerstate=='session_run' || timerstate=='session_stop')
+    {
+      $("#state").html('Session');
+      $(".time-font").css('color','#EEE');
+    }
 }
 
 var f = 0;
 function test(){
   if (f == 0)
   {
-    $(".show-time-area").toggleClass("change-color-ani");
+    $(".show-time-area").addClass("change-color-ani");
     f = 1;
+    console.log(f);
   }
   else if(f==1)
   {
+    $(".show-time-area").removeClass("change-color-ani");
     f =0;
-    f = 0;
+    console.log(f);
   }
 }
 

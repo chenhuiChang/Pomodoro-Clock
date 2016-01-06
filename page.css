@@ -39,24 +39,21 @@
 }
 
 .show-time-area{
+   cursor: pointer;
    position: relative;
    width:300px;
    height:300px;
    float:left;
    top:calc(50% - 150px);
    margin-left:calc(50% - 150px);
-   /*border-style: solid;*/
+   border-style: solid;
    border-radius:50%;
 }
 .show-time-area-border{
-  border-color: #0F0;
+  border-color: #888;
 }
 @keyframes change-color{
-  0%  { border-color:#00F; };
-  30% { border-color:#000; };
-  50% { border-color:#F00; };
-  60% { border-color:#000; };
-  100%{ border-color:#00F; };
+  0%  { border-color:#FFF; };
 }
 .change-color-ani{
   border-style: solid;
